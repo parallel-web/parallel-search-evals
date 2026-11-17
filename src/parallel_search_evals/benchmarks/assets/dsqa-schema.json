@@ -1,0 +1,47 @@
+{
+  "$defs": {
+    "_OfficialDSQADetails": {
+      "additionalProperties": false,
+      "properties": {
+        "Explanation": {
+          "minLength": 1,
+          "title": "Explanation",
+          "type": "string"
+        },
+        "Correctness Details": {
+          "additionalProperties": {
+            "type": "boolean"
+          },
+          "minProperties": 1,
+          "title": "Correctness Details",
+          "type": "object"
+        },
+        "Excessive Answers": {
+          "items": {
+            "type": "string"
+          },
+          "title": "Excessive Answers",
+          "type": "array"
+        }
+      },
+      "required": [
+        "Explanation",
+        "Correctness Details",
+        "Excessive Answers"
+      ],
+      "title": "_OfficialDSQADetails",
+      "type": "object"
+    }
+  },
+  "additionalProperties": false,
+  "properties": {
+    "Answer Correctness": {
+      "$ref": "#/$defs/_OfficialDSQADetails"
+    }
+  },
+  "required": [
+    "Answer Correctness"
+  ],
+  "title": "_OfficialDSQAJudgement",
+  "type": "object"
+}

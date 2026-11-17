@@ -1,0 +1,25 @@
+{
+  "dsqa-judge": {
+    "source_url": "https://www.kaggle.com/code/andrewmingwang/deepsearchqa-starter-code",
+    "notebook_ref": "andrewmingwang/deepsearchqa-starter-code",
+    "notebook_version": 1,
+    "notebook_source_sha256": "aa1ace0a1e0023a5cad5e662968bcf18c6b4f5c0666cbad78a46ba5f813559b2",
+    "extraction": "Cell 12: textwrap.dedent(DEEPSEARCH_QA_PROMPT) + GRADER_RATING_OUTPUT_EXAMPLE. Constants extracted via AST; notebook not executed.",
+    "rendering": "Single user message; upstream format placeholders, strip input whitespace as upstream does. No added system message.",
+    "prompt_file_sha256": "40924aff546ad9f1333618c96b511e69f0c2cafbdc4b6a118802413e79d8a6bf",
+    "judge_model": "gpt-6-sol",
+    "reasoning_effort": "medium",
+    "official_model_reproduction": false
+  },
+  "hle-judge": {
+    "source_url": "https://github.com/centerforaisafety/hle/blob/22ed3074b1e7b134bcbc09028d0ba320839b0655/hle_eval/run_judge_results.py",
+    "source_revision": "22ed3074b1e7b134bcbc09028d0ba320839b0655",
+    "source_file_sha256": "a796e74d6e58beab3bd88f46182f599443a102308b2d1c7e0b4b22f578468446",
+    "extraction": "JUDGE_PROMPT string extracted via AST; source not executed.",
+    "rendering": "Single user message, with original question/response/correct_answer placeholders. No added system message.",
+    "prompt_file_sha256": "732dd73cab327aca3bc0d6357d0c2254c0fdeeb8928d2c51edc51648d1be4fb8",
+    "judge_model": "gpt-6-sol",
+    "reasoning_effort": "medium",
+    "official_model_reproduction": false
+  }
+}

@@ -1,0 +1,240 @@
+{
+  "task": {
+    "id": "dsqa-oracle",
+    "suite": "dsqa",
+    "question": "Which two labels are in the synthetic list?",
+    "reference": "Alpha and Beta",
+    "metadata": {
+      "answer_type": "Set Answer"
+    }
+  },
+  "answer": "Alpha and Gamma",
+  "configuration": {
+    "suite": "dsqa",
+    "model": {
+      "provider": "openai",
+      "id": "judge-dsqa",
+      "model": "gpt-6-sol",
+      "display_name": "judge-dsqa",
+      "max_tokens": 16384,
+      "effort": "medium",
+      "temperature": null,
+      "support_metadata": {
+        "input_bound": {
+          "method": "context_window_fallback",
+          "model": "gpt-6-sol",
+          "observed_at": "2026-11-16",
+          "provider": "openai",
+          "source_url": "https://developers.openai.com/api/docs/models/gpt-6-sol",
+          "tokens": 1050000
+        }
+      },
+      "thinking": null,
+      "cache": {
+        "mode": "none",
+        "ttl_seconds": null
+      },
+      "synthetic": false,
+      "responses_transport": {
+        "connect_timeout_seconds": 30.0,
+        "idle_timeout_seconds": 120.0,
+        "stream": true
+      }
+    },
+    "prompt_template": "dsqa-judge",
+    "prompt_sha256": null,
+    "metric": "f1"
+  },
+  "request": {
+    "grader_model": {
+      "provider": "openai",
+      "id": "judge-dsqa",
+      "model": "gpt-6-sol",
+      "display_name": "judge-dsqa",
+      "max_tokens": 16384,
+      "effort": "medium",
+      "temperature": null,
+      "support_metadata": {
+        "input_bound": {
+          "method": "context_window_fallback",
+          "model": "gpt-6-sol",
+          "observed_at": "2026-11-16",
+          "provider": "openai",
+          "source_url": "https://developers.openai.com/api/docs/models/gpt-6-sol",
+          "tokens": 1050000
+        }
+      },
+      "thinking": null,
+      "cache": {
+        "mode": "none",
+        "ttl_seconds": null
+      },
+      "synthetic": false,
+      "responses_transport": {
+        "connect_timeout_seconds": 30.0,
+        "idle_timeout_seconds": 120.0,
+        "stream": true
+      }
+    },
+    "system_prompt": "",
+    "user_prompt": "Your task is to evaluate whether a given \"AI Response\" for a specific \"User Prompt\" arrived at the correct answer.\n\n**Answer Correctness Task**\n\n*   **Purpose:** Assess whether the AI response provides the correct answer(s) based on the provided \"Correct Answer\" and \"Prompt Type\".\n*   **Process:**\n    *   Identify the \"Prompt Type\": \"<prompt_type>\".\n    *   Refer to the \"Correct Answer\": \"<answer>\".\n    *   Based on the \"Prompt Type\", determine if the \"AI Response\" contains the expected answer(s).\n        *   **'Single Answer'**: Check if the response provides the answer that addresses the user's question. It does not have to match the exact wording of the provided answer.\n        *   **'Set Answer'**: Check if the response includes *each* item from the provided ground truth answers. The order might not matter unless specified otherwise. The response might include more answers than the list. Determine the correctness *only* based on the list first and then check if the response includes answers not in the list.\n    *   **Explanation:** Provide a brief explanation justifying your assessment of answer correctness, referencing specific parts of the AI response and the correct answer.\n    *   **Correctness Details:** Provide a dictionary, one key for each expected answer part, and value is a boolean indicating whether each expected answer part was found.\n        *   For 'Set Answer', this will be a list of attributes, one for each item/part in the \"Correct Answer\". Each key will be a string indicating the expected answer part, and the value will be a boolean indicating whether that part was found in the response.\n    *   **Excessive Answers:** Provide a list of strings, each indicating an excessive answer part. If the response provides answers that are **not** in the \"Correct Answer\" list, add these answers as excessive answers. Return an empty list when there's no excessive answers in the response.\n\n\n**Output Format:**\n\nYour evaluation *must* be structured as a nested JSON dictionary with the following top-level keys: `\"Answer Correctness\"`. Please return NULL if any of \"Prompt\", \"AI Response\" or \"Correct Answer\" is empty.\nThe value for `\"Answer Correctness\"` should be a dictionary containing `\"Explanation\"` (a string), `\"Correctness Details\"` (a dictionary where each key is the expected correct answer, and the value is a boolean indicating whether the response contains the correct answer), and `\"Excessive Answers\"` (a list of strings indicating the excessive answers).\n\nMake sure you return a valid JSON string. Pay special attention to quotes, commas and special characters in the JSON string. Make sure to escape all special characters and quotes in the JSON string.\n\n\n**Example (Partial):**\n\n\"```json\n{\n  \"Answer Correctness\": {\n    \"Explanation\": \"The response correctly identified Belgium and France but also includes an excessive answer, Italy.\",\n    \"Correctness Details\": {\n      \"Belgium\": true,\n      \"France\": true,\n    },\n    \"Excessive Answers\": [ \"Italy\" ]\n  }\n}\n```\"\n\n**Now, proceed with the evaluation using the provided User Prompt, AI Response, and Correct Answer.**\n\nUser Prompt (Wrapped in <prompt> and </prompt>):\n<prompt>\nWhich two labels are in the synthetic list?\n</prompt>\n--------------------\n**  Correct Answer (Wrapped in <answer> and </answer>):\nPrompt Type: Set Answer\n<answer>\nAlpha and Beta\n</answer>\n--------------------\nAI assistant response (Wrapped in <response> and </response>):\n<response>\nAlpha and Gamma\n</response>\n\n--------------------\nRating:",
+    "response_schema": "dsqa-judgement",
+    "binding": {
+      "suite": "dsqa",
+      "task_id": "dsqa-oracle",
+      "question_sha256": "28de8b8f12eb1e2cc40357bbe5e36f1740320cb4819f14c567fb0950be78ba18",
+      "reference_sha256": "aa91a9b4d455c1e6900aefe1152ee1400f1a0166e772d3a86d2db0297d345a8a",
+      "answer_sha256": "c4f2182564b3edb0ea9a5546bf369f29434aa24d2572465c1548b370830baa6b",
+      "config_sha256": "23a10b0800249b9831273c54e6828525f6ac1a713cf17d1e5637b8d2de4637fa",
+      "prompt_template_sha256": "35aa92340f793d5c55b584c3f6f8691caad72292ae07c06b82d4257419db63d7",
+      "rendered_prompt_sha256": "b79843520edaca8f0d76d49f0932652678790762626510064794a719c879b035",
+      "metric": "f1",
+      "grader_id": "grader-dsqa-23a10b0800249b98"
+    }
+  },
+  "response_schema": {
+    "id": "dsqa-judgement",
+    "json_schema": {
+      "$defs": {
+        "_OfficialDSQADetails": {
+          "additionalProperties": false,
+          "properties": {
+            "Explanation": {
+              "minLength": 1,
+              "title": "Explanation",
+              "type": "string"
+            },
+            "Correctness Details": {
+              "additionalProperties": {
+                "type": "boolean"
+              },
+              "minProperties": 1,
+              "title": "Correctness Details",
+              "type": "object"
+            },
+            "Excessive Answers": {
+              "items": {
+                "type": "string"
+              },
+              "title": "Excessive Answers",
+              "type": "array"
+            }
+          },
+          "required": [
+            "Explanation",
+            "Correctness Details",
+            "Excessive Answers"
+          ],
+          "title": "_OfficialDSQADetails",
+          "type": "object"
+        }
+      },
+      "additionalProperties": false,
+      "properties": {
+        "Answer Correctness": {
+          "$ref": "#/$defs/_OfficialDSQADetails"
+        }
+      },
+      "required": [
+        "Answer Correctness"
+      ],
+      "title": "_OfficialDSQAJudgement",
+      "type": "object"
+    },
+    "sha256": "0ad9a583dc030a0d2643386c09876b915f83d88058c51101fae1f6c4a98c8e4b"
+  },
+  "judge_response": "{\"Answer Correctness\": {\"Explanation\": \"Alpha is present; Beta is missing; Gamma is excessive.\", \"Correctness Details\": {\"Alpha\": true, \"Beta\": false}, \"Excessive Answers\": [\"Gamma\"]}}",
+  "grade": {
+    "score": 0.5,
+    "correct": false,
+    "grader_id": "grader-dsqa-23a10b0800249b98",
+    "answer_sha256": "c4f2182564b3edb0ea9a5546bf369f29434aa24d2572465c1548b370830baa6b",
+    "grader_prompt_sha256": "b79843520edaca8f0d76d49f0932652678790762626510064794a719c879b035",
+    "details": {
+      "metric": "f1",
+      "strict": false,
+      "precision": 0.5,
+      "recall": 0.5,
+      "f1": 0.5,
+      "expected_parts": 2,
+      "correct_parts": 1,
+      "excessive_answers": 1,
+      "semantic_completeness": "judge-dependent",
+      "prompt_template_sha256": "35aa92340f793d5c55b584c3f6f8691caad72292ae07c06b82d4257419db63d7"
+    }
+  },
+  "wire_request": {
+    "include": [
+      "reasoning.encrypted_content"
+    ],
+    "input": [
+      {
+        "role": "user",
+        "content": "Your task is to evaluate whether a given \"AI Response\" for a specific \"User Prompt\" arrived at the correct answer.\n\n**Answer Correctness Task**\n\n*   **Purpose:** Assess whether the AI response provides the correct answer(s) based on the provided \"Correct Answer\" and \"Prompt Type\".\n*   **Process:**\n    *   Identify the \"Prompt Type\": \"<prompt_type>\".\n    *   Refer to the \"Correct Answer\": \"<answer>\".\n    *   Based on the \"Prompt Type\", determine if the \"AI Response\" contains the expected answer(s).\n        *   **'Single Answer'**: Check if the response provides the answer that addresses the user's question. It does not have to match the exact wording of the provided answer.\n        *   **'Set Answer'**: Check if the response includes *each* item from the provided ground truth answers. The order might not matter unless specified otherwise. The response might include more answers than the list. Determine the correctness *only* based on the list first and then check if the response includes answers not in the list.\n    *   **Explanation:** Provide a brief explanation justifying your assessment of answer correctness, referencing specific parts of the AI response and the correct answer.\n    *   **Correctness Details:** Provide a dictionary, one key for each expected answer part, and value is a boolean indicating whether each expected answer part was found.\n        *   For 'Set Answer', this will be a list of attributes, one for each item/part in the \"Correct Answer\". Each key will be a string indicating the expected answer part, and the value will be a boolean indicating whether that part was found in the response.\n    *   **Excessive Answers:** Provide a list of strings, each indicating an excessive answer part. If the response provides answers that are **not** in the \"Correct Answer\" list, add these answers as excessive answers. Return an empty list when there's no excessive answers in the response.\n\n\n**Output Format:**\n\nYour evaluation *must* be structured as a nested JSON dictionary with the following top-level keys: `\"Answer Correctness\"`. Please return NULL if any of \"Prompt\", \"AI Response\" or \"Correct Answer\" is empty.\nThe value for `\"Answer Correctness\"` should be a dictionary containing `\"Explanation\"` (a string), `\"Correctness Details\"` (a dictionary where each key is the expected correct answer, and the value is a boolean indicating whether the response contains the correct answer), and `\"Excessive Answers\"` (a list of strings indicating the excessive answers).\n\nMake sure you return a valid JSON string. Pay special attention to quotes, commas and special characters in the JSON string. Make sure to escape all special characters and quotes in the JSON string.\n\n\n**Example (Partial):**\n\n\"```json\n{\n  \"Answer Correctness\": {\n    \"Explanation\": \"The response correctly identified Belgium and France but also includes an excessive answer, Italy.\",\n    \"Correctness Details\": {\n      \"Belgium\": true,\n      \"France\": true,\n    },\n    \"Excessive Answers\": [ \"Italy\" ]\n  }\n}\n```\"\n\n**Now, proceed with the evaluation using the provided User Prompt, AI Response, and Correct Answer.**\n\nUser Prompt (Wrapped in <prompt> and </prompt>):\n<prompt>\nWhich two labels are in the synthetic list?\n</prompt>\n--------------------\n**  Correct Answer (Wrapped in <answer> and </answer>):\nPrompt Type: Set Answer\n<answer>\nAlpha and Beta\n</answer>\n--------------------\nAI assistant response (Wrapped in <response> and </response>):\n<response>\nAlpha and Gamma\n</response>\n\n--------------------\nRating:"
+      }
+    ],
+    "max_output_tokens": 16384,
+    "model": "gpt-6-sol",
+    "reasoning": {
+      "effort": "medium"
+    },
+    "store": false,
+    "stream": true,
+    "text": {
+      "format": {
+        "type": "json_schema",
+        "name": "judgement",
+        "schema": {
+          "$defs": {
+            "_OfficialDSQADetails": {
+              "additionalProperties": false,
+              "properties": {
+                "Explanation": {
+                  "minLength": 1,
+                  "title": "Explanation",
+                  "type": "string"
+                },
+                "Correctness Details": {
+                  "additionalProperties": {
+                    "type": "boolean"
+                  },
+                  "minProperties": 1,
+                  "title": "Correctness Details",
+                  "type": "object"
+                },
+                "Excessive Answers": {
+                  "items": {
+                    "type": "string"
+                  },
+                  "title": "Excessive Answers",
+                  "type": "array"
+                }
+              },
+              "required": [
+                "Explanation",
+                "Correctness Details",
+                "Excessive Answers"
+              ],
+              "title": "_OfficialDSQADetails",
+              "type": "object"
+            }
+          },
+          "additionalProperties": false,
+          "properties": {
+            "Answer Correctness": {
+              "$ref": "#/$defs/_OfficialDSQADetails"
+            }
+          },
+          "required": [
+            "Answer Correctness"
+          ],
+          "title": "_OfficialDSQAJudgement",
+          "type": "object"
+        },
+        "strict": false
+      }
+    },
+    "tool_choice": "none",
+    "tools": []
+  }
+}

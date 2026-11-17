@@ -1,0 +1,79 @@
+[build-system]
+requires = ["setuptools>=61.0", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "parallel-search-evals"
+version = "0.1.0"
+description = "Evaluate language models with Parallel Search and Extract"
+readme = "README.md"
+license = { text = "MIT" }
+authors = [{ name = "Parallel Web Systems" }]
+keywords = ["parallel", "search", "evaluation", "benchmarks"]
+requires-python = ">=3.12,<3.14"
+dependencies = [
+    "anthropic==0.75.0",
+    "chz==0.4.0",
+    "google-genai==2.34.0",
+    "httpx==0.28.1",
+    "jsonschema==4.25.1",
+    "openai==1.109.1",
+    "orjson==3.11.6",
+    "parallel-web==1.3.7",
+    "pydantic==2.14.3",
+]
+
+[tool.setuptools]
+license-files = ["LICENSE", "docs/third-party/*.txt", "docs/third-party/README.md"]
+
+[tool.setuptools.packages.find]
+where = ["src"]
+include = ["parallel_search_evals*"]
+
+[tool.setuptools.package-data]
+"parallel_search_evals.benchmarks" = ["assets/*"]
+"parallel_search_evals.tools" = ["assets/*"]
+
+[tool.ruff]
+line-length = 120
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "N", "W", "UP", "B", "C4", "SIM"]
+ignore = ["E501"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+python_files = ["test_*.py"]
+python_functions = ["test_*"]
+addopts = ["-v", "--tb=short", "--strict-config", "--strict-markers", "--disable-warnings"]
+asyncio_mode = "auto"
+filterwarnings = ["ignore::DeprecationWarning", "ignore::PendingDeprecationWarning"]
+
+[tool.mypy]
+python_version = "3.12"
+strict = true
+warn_unused_configs = true
+warn_unreachable = true
+explicit_package_bases = true
+mypy_path = "src"
+enable_error_code = [
+    "deprecated",
+    "ignore-without-code",
+    "mutable-override",
+    "possibly-undefined",
+    "redundant-expr",
+    "redundant-self",
+    "truthy-bool",
+    "truthy-iterable",
+]
+
+[dependency-groups]
+dev = [
+    "lizard==1.17.31",
+    "radon==6.0.1",
+    "ruff==0.15.22",
+    "mypy==1.20.2",
+    "types-jsonschema==4.26.0.20261006",
+    "pytest==9.1.1",
+    "pytest-asyncio==1.3.0",
+]

@@ -1,0 +1,8 @@
+include LICENSE README.md pyproject.toml uv.lock
+include .gitignore
+graft .github
+graft .agents
+graft src
+graft tests
+graft docs
+global-exclude *.pyc *.pyo

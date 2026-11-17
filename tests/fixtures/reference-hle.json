@@ -1,0 +1,231 @@
+{
+  "task": {
+    "id": "hle-synthetic",
+    "suite": "hle",
+    "question": "  What is 2 + 2?\n",
+    "reference": " 4\n",
+    "metadata": {
+      "modality": "text"
+    }
+  },
+  "answer": " 4\nConfidence: 88%\n",
+  "configuration": {
+    "suite": "hle",
+    "model": {
+      "provider": "openai",
+      "id": "judge-hle",
+      "model": "gpt-6-sol",
+      "display_name": "judge-hle",
+      "max_tokens": 16384,
+      "effort": "medium",
+      "temperature": null,
+      "support_metadata": {
+        "input_bound": {
+          "method": "context_window_fallback",
+          "model": "gpt-6-sol",
+          "observed_at": "2026-11-16",
+          "provider": "openai",
+          "source_url": "https://developers.openai.com/api/docs/models/gpt-6-sol",
+          "tokens": 1050000
+        }
+      },
+      "thinking": null,
+      "cache": {
+        "mode": "none",
+        "ttl_seconds": null
+      },
+      "synthetic": false,
+      "responses_transport": {
+        "connect_timeout_seconds": 30.0,
+        "idle_timeout_seconds": 120.0,
+        "stream": true
+      }
+    },
+    "prompt_template": "hle-judge",
+    "prompt_sha256": null,
+    "metric": "strict"
+  },
+  "schema": {
+    "additionalProperties": false,
+    "properties": {
+      "extracted_final_answer": {
+        "minLength": 1,
+        "title": "Extracted Final Answer",
+        "type": "string"
+      },
+      "reasoning": {
+        "minLength": 1,
+        "title": "Reasoning",
+        "type": "string"
+      },
+      "correct": {
+        "enum": [
+          "yes",
+          "no"
+        ],
+        "title": "Correct",
+        "type": "string"
+      },
+      "confidence": {
+        "maximum": 100,
+        "minimum": 0,
+        "title": "Confidence",
+        "type": "integer"
+      },
+      "strict": {
+        "const": true,
+        "title": "Strict",
+        "type": "boolean"
+      }
+    },
+    "required": [
+      "extracted_final_answer",
+      "reasoning",
+      "correct",
+      "confidence",
+      "strict"
+    ],
+    "title": "_OfficialHLEJudgement",
+    "type": "object"
+  },
+  "request": {
+    "grader_model": {
+      "provider": "openai",
+      "id": "judge-hle",
+      "model": "gpt-6-sol",
+      "display_name": "judge-hle",
+      "max_tokens": 16384,
+      "effort": "medium",
+      "temperature": null,
+      "support_metadata": {
+        "input_bound": {
+          "method": "context_window_fallback",
+          "model": "gpt-6-sol",
+          "observed_at": "2026-11-16",
+          "provider": "openai",
+          "source_url": "https://developers.openai.com/api/docs/models/gpt-6-sol",
+          "tokens": 1050000
+        }
+      },
+      "thinking": null,
+      "cache": {
+        "mode": "none",
+        "ttl_seconds": null
+      },
+      "synthetic": false,
+      "responses_transport": {
+        "connect_timeout_seconds": 30.0,
+        "idle_timeout_seconds": 120.0,
+        "stream": true
+      }
+    },
+    "system_prompt": "",
+    "user_prompt": "Judge whether the following [response] to [question] is correct or not based on the precise and unambiguous [correct_answer] below.\n\n[question]:   What is 2 + 2?\n\n\n[response]:  4\nConfidence: 88%\n\n\nYour judgement must be in the format and criteria specified below:\n\nextracted_final_answer: The final exact answer extracted from the [response]. Put the extracted answer as 'None' if there is no exact, final answer to extract from the response.\n\n[correct_answer]:  4\n\n\nreasoning: Explain why the extracted_final_answer is correct or incorrect based on [correct_answer], focusing only on if there are meaningful differences between [correct_answer] and the extracted_final_answer. Do not comment on any background to the problem, do not attempt to solve the problem, do not argue for any answer different than [correct_answer], focus only on whether the answers match.\n\ncorrect: Answer 'yes' if extracted_final_answer matches the [correct_answer] given above, or is within a small margin of error for numerical problems. Answer 'no' otherwise, i.e. if there if there is any inconsistency, ambiguity, non-equivalency, or if the extracted answer is incorrect.\n\n\nconfidence: The extracted confidence score between 0|\\%| and 100|\\%| from [response]. Put 100 if there is no confidence score available.",
+    "response_schema": "hle-judgement",
+    "binding": {
+      "suite": "hle",
+      "task_id": "hle-synthetic",
+      "question_sha256": "4dee2040966bb847624b0fd4618ac5cc7b3500534a4d63f3653abf98ff22a209",
+      "reference_sha256": "b89cfdc48b6228ac0a65bc2cafc33c7d79884e6a4093d64d03e1f8799ff3650d",
+      "answer_sha256": "79ce2de9d1da928319492e59703dc997249a600362017e1ad5b4975759cb1540",
+      "config_sha256": "41746213080aa61552bd33cfca6d6b3cd3982b8f30c9b089f819383af0a6d86d",
+      "prompt_template_sha256": "627c7f5d1b002bb73eef9f773eabe2f8ce54e1cd50b2eb3cfcc251d1ae24b6cb",
+      "rendered_prompt_sha256": "7e49866f884dffb8b6996e4ee0bf368e88bcee7434d49e8b95b66e968eb10ebe",
+      "metric": "strict",
+      "grader_id": "grader-hle-41746213080aa615"
+    }
+  },
+  "judge_response": "{\"extracted_final_answer\": \"4\", \"reasoning\": \"The answers match.\", \"correct\": \"yes\", \"confidence\": 88, \"strict\": true}",
+  "grade": {
+    "score": 1.0,
+    "correct": true,
+    "grader_id": "grader-hle-41746213080aa615",
+    "answer_sha256": "79ce2de9d1da928319492e59703dc997249a600362017e1ad5b4975759cb1540",
+    "grader_prompt_sha256": "7e49866f884dffb8b6996e4ee0bf368e88bcee7434d49e8b95b66e968eb10ebe",
+    "details": {
+      "metric": "strict",
+      "verdict": "yes",
+      "confidence": 88,
+      "prompt_template_sha256": "627c7f5d1b002bb73eef9f773eabe2f8ce54e1cd50b2eb3cfcc251d1ae24b6cb"
+    }
+  },
+  "wire_request": {
+    "include": [
+      "reasoning.encrypted_content"
+    ],
+    "input": [
+      {
+        "role": "user",
+        "content": "Judge whether the following [response] to [question] is correct or not based on the precise and unambiguous [correct_answer] below.\n\n[question]:   What is 2 + 2?\n\n\n[response]:  4\nConfidence: 88%\n\n\nYour judgement must be in the format and criteria specified below:\n\nextracted_final_answer: The final exact answer extracted from the [response]. Put the extracted answer as 'None' if there is no exact, final answer to extract from the response.\n\n[correct_answer]:  4\n\n\nreasoning: Explain why the extracted_final_answer is correct or incorrect based on [correct_answer], focusing only on if there are meaningful differences between [correct_answer] and the extracted_final_answer. Do not comment on any background to the problem, do not attempt to solve the problem, do not argue for any answer different than [correct_answer], focus only on whether the answers match.\n\ncorrect: Answer 'yes' if extracted_final_answer matches the [correct_answer] given above, or is within a small margin of error for numerical problems. Answer 'no' otherwise, i.e. if there if there is any inconsistency, ambiguity, non-equivalency, or if the extracted answer is incorrect.\n\n\nconfidence: The extracted confidence score between 0|\\%| and 100|\\%| from [response]. Put 100 if there is no confidence score available."
+      }
+    ],
+    "max_output_tokens": 16384,
+    "model": "gpt-6-sol",
+    "reasoning": {
+      "effort": "medium"
+    },
+    "store": false,
+    "stream": true,
+    "text": {
+      "format": {
+        "type": "json_schema",
+        "name": "judgement",
+        "schema": {
+          "additionalProperties": false,
+          "properties": {
+            "extracted_final_answer": {
+              "minLength": 1,
+              "title": "Extracted Final Answer",
+              "type": "string"
+            },
+            "reasoning": {
+              "minLength": 1,
+              "title": "Reasoning",
+              "type": "string"
+            },
+            "correct": {
+              "enum": [
+                "yes",
+                "no"
+              ],
+              "title": "Correct",
+              "type": "string"
+            },
+            "confidence": {
+              "maximum": 100,
+              "minimum": 0,
+              "title": "Confidence",
+              "type": "integer"
+            },
+            "strict": {
+              "const": true,
+              "title": "Strict",
+              "type": "boolean"
+            }
+          },
+          "required": [
+            "extracted_final_answer",
+            "reasoning",
+            "correct",
+            "confidence",
+            "strict"
+          ],
+          "title": "_OfficialHLEJudgement",
+          "type": "object"
+        },
+        "strict": true
+      }
+    },
+    "tool_choice": "none",
+    "tools": []
+  },
+  "provenance": {
+    "reference_archive_commit": "e54ebda82130ca725405aa42e04e64fdbcf35101",
+    "validation": "Synthetic question and answer replayed through BenchmarkGrader and the actual OpenAI SDK with HTTPX MockTransport; no network or credentials.",
+    "asset_sha256": {
+      "src/parallel_search_evals/benchmarks/assets/hle-judge.user.txt": "732dd73cab327aca3bc0d6357d0c2254c0fdeeb8928d2c51edc51648d1be4fb8",
+      "src/parallel_search_evals/benchmarks/assets/hle-schema.json": "8879293c3c42f00e19bee8b126b7a542a61e71d3aa4505869cf11bf5c7ef8f84"
+    },
+    "upstream_provenance": "src/parallel_search_evals/benchmarks/assets/official-sources.json"
+  }
+}

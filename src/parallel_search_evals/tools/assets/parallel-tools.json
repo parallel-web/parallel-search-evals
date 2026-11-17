@@ -1,0 +1,63 @@
+[
+  {
+    "type": "function",
+    "name": "search_web",
+    "description": "Search the web for current factual information. Provide a self-contained objective and as many short keyword queries as the question needs.",
+    "parameters": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "objective": {
+          "type": "string",
+          "minLength": 1
+        },
+        "search_queries": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1
+          },
+          "minItems": 1
+        }
+      },
+      "required": [
+        "objective",
+        "search_queries"
+      ]
+    }
+  },
+  {
+    "type": "function",
+    "name": "web_fetch",
+    "description": "Extract evidence from one or more exact URLs.",
+    "parameters": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "urls": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1
+          },
+          "minItems": 1
+        },
+        "objective": {
+          "type": "string",
+          "minLength": 1
+        },
+        "search_queries": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1
+          }
+        }
+      },
+      "required": [
+        "urls",
+        "objective"
+      ]
+    }
+  }
+]

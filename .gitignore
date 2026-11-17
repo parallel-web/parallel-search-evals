@@ -1,0 +1,32 @@
+.venv/
+.uv-cache/
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.ruff_cache/
+.mypy_cache/
+dist/
+build/
+*.egg-info/
+.env
+.env.*
+!.env.example
+runs/
+data/
+.superpowers/
+docs/superpowers/
+.DS_Store
+
+# Local credentials, traces and editor state (not a substitute for content review).
+*.pem
+*.key
+.envrc
+*.log
+credentials.json
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# Local review workspace.
+/work/

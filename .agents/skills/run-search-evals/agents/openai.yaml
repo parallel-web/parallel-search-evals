@@ -1,0 +1,4 @@
+interface:
+  display_name: "Run Search Evaluations"
+  short_description: "Choose a model and run local search benchmarks"
+  default_prompt: "Use $run-search-evals to help me evaluate a model locally and inspect its summary JSON and saved terminal results."

@@ -1,0 +1,43 @@
+{
+  "additionalProperties": false,
+  "properties": {
+    "extracted_final_answer": {
+      "minLength": 1,
+      "title": "Extracted Final Answer",
+      "type": "string"
+    },
+    "reasoning": {
+      "minLength": 1,
+      "title": "Reasoning",
+      "type": "string"
+    },
+    "correct": {
+      "enum": [
+        "yes",
+        "no"
+      ],
+      "title": "Correct",
+      "type": "string"
+    },
+    "confidence": {
+      "maximum": 100,
+      "minimum": 0,
+      "title": "Confidence",
+      "type": "integer"
+    },
+    "strict": {
+      "const": true,
+      "title": "Strict",
+      "type": "boolean"
+    }
+  },
+  "required": [
+    "extracted_final_answer",
+    "reasoning",
+    "correct",
+    "confidence",
+    "strict"
+  ],
+  "title": "_OfficialHLEJudgement",
+  "type": "object"
+}
