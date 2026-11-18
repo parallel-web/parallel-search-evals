@@ -2,7 +2,14 @@
 
 Run one model × one suite × one mode per invocation. For comparisons, invoke baseline and search separately with matched source-order questions and model settings. All model/tool/judge calls are paid; pytest uses offline synthetic fixtures.
 
-`config.json` stores ordinary applied run settings and source identity. Each `{task_id}.json` stores either a completed datum/conversation/official grade or a failed datum/failure. The summary is written beside the run as `results/{run_name}.json`; failures remain in its planned denominator. Progress and summary logging are emitted by the CLI. No standalone summary command or CSV export is provided.
+`config.json` stores ordinary applied run settings and source identity. Each `{task_id}.json` stores either a completed datum/conversation/official grade or a failed datum/failure. The summary is written beside the run as `results/{run_name}.json`; failures remain in its planned denominator. Progress and summary logging are emitted by the CLI. After a run finishes, reprint counts and score from the saved directory without credentials:
+
+```sh
+uv run --frozen python -m parallel_search_evals.summarize run_dir=runs/dsqa-smoke
+uv run --frozen python -m parallel_search_evals.summarize run_dir=runs/dsqa-smoke csv=runs/dsqa-smoke.csv
+```
+
+The command reads `config.json` and each `{task_id}.json`, reports malformed files that would rerun on resume (excluded from the score), and compares `results/{run_name}.json` when present. `csv=` writes `task_id,status,correct,score,failure_kind` with private permissions and refuses to overwrite unless `overwrite=true`. Question text, references, answers, grade text and native history are omitted.
 
 Rerunning identical arguments against the same directory reuses valid terminal results, including failures. Missing or malformed task files rerun the entire task. Partial answers are not checkpoints. A mismatched configuration is rejected before provider requests.
 

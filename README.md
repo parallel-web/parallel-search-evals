@@ -102,6 +102,8 @@ Each run writes `config.json` and one terminal `{task_id}.json` per question.
 Completed records contain the original datum, native conversation and official
 grade; failed records contain the datum and failure. The CLI logs progress and
 summary results; a summary is saved next to the run in `results/{run_name}.json`.
+Summarize a copied or interrupted run offline with
+`python -m parallel_search_evals.summarize run_dir=...` (optional `csv=`).
 All planned questions, including failures, remain in the score denominator.
 
 To resume, rerun the same command with the same output directory. Valid terminal
