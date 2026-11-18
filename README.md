@@ -69,7 +69,8 @@ the harness does not authenticate to dataset hosts or accept terms for you.
 
 Each invocation evaluates **one model × one benchmark × one mode**. Use `parallel-fast`, `parallel-basic`, `parallel-advanced`
 or `parallel-turbo` for Parallel Search and Extract, or `baseline` for closed-book
-generation. Run comparisons separately with matched questions and settings.
+generation. Run comparisons separately with matched questions and settings, then
+`uv run --frozen python -m parallel_search_evals.compare` on the two run directories.
 
 The CLI defaults to the first three eligible source-order questions and concurrency
 ten. Set `limit=N` for a sample, `limit=None` for all eligible rows, and

@@ -2,6 +2,15 @@
 
 Run one model × one suite × one mode per invocation. For comparisons, invoke baseline and search separately with matched source-order questions and model settings. All model/tool/judge calls are paid; pytest uses offline synthetic fixtures.
 
+Comparing runs. After matched baseline and search directories finish, compare them without opening clients:
+
+```sh
+uv run --frozen python -m parallel_search_evals.compare \
+  base=runs/dsqa-baseline candidate=runs/dsqa-search
+```
+
+The command checks suite, source identity, judge and retrieval fields first. It then reports each side's score, the paired correctness table (failures counted as incorrect), net change, and an exact two-sided McNemar (binomial) p-value on discordant questions. Use `ids=true` to list discordant task IDs and `json=true` for a machine-readable object. It never prints question text, answers, references, grade text or history.
+
 `config.json` stores ordinary applied run settings and source identity. Each `{task_id}.json` stores either a completed datum/conversation/official grade or a failed datum/failure. The summary is written beside the run as `results/{run_name}.json`; failures remain in its planned denominator. Progress and summary logging are emitted by the CLI. No standalone summary command or CSV export is provided.
 
 Rerunning identical arguments against the same directory reuses valid terminal results, including failures. Missing or malformed task files rerun the entire task. Partial answers are not checkpoints. A mismatched configuration is rejected before provider requests.
