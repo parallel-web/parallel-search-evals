@@ -71,7 +71,7 @@ enable_error_code = [
 dev = [
     "lizard==1.17.31",
     "radon==6.0.1",
-    "ruff==0.15.22",
+    "ruff==0.17.6",
     "mypy==1.20.2",
     "types-jsonschema==4.26.0.20261006",
     "pytest==9.1.1",
