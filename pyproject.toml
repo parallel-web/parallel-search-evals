@@ -69,7 +69,7 @@ enable_error_code = [
 
 [dependency-groups]
 dev = [
-    "lizard==1.17.31",
+    "lizard==1.26.1",
     "radon==6.0.1",
     "ruff==0.15.22",
     "mypy==1.20.2",
